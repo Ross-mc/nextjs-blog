@@ -3,9 +3,7 @@ import Navigation from "./Navigation"
 const Layout = (props) => {
   return (
     <>
-      <header>
-        <Navigation />
-      </header>
+      <Navigation />
       <main>{props.children}</main>
     </>
   )
