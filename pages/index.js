@@ -1,14 +1,24 @@
 import FeaturedPosts from "../components/Home/FeaturedPosts"
 import Hero from "../components/Home/Hero"
+import { getFeaturedPosts } from "../utils/posts"
 
-const Home = () => {
-  
+const Home = (props) => {
   return (
     <>
       <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS}/>
+      <FeaturedPosts posts={props.featuredPosts}/>
     </>
   )
+}
+
+export const getStaticProps = () => {
+  const featuredPosts = getFeaturedPosts();
+
+  return {
+    props: {
+      featuredPosts
+    }
+  }
 }
 
 export default Home

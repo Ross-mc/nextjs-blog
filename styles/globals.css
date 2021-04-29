@@ -62,3 +62,11 @@ button {
   font: inherit;
   cursor: pointer;
 }
+
+code {
+  background-color: var(--color-grey-800);
+  color: #f1c40f;
+  font-size: 0.9rem;
+  padding: 2px;
+  border-radius: 2px;
+}
