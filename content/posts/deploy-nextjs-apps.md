@@ -4,6 +4,7 @@ slug: "deploy-nextjs-apps"
 image: "deploy-nextjs-apps.png"
 excerpt: "Deploying NextJS apps is really simple. Netlify can host your NextJS application with your serverless functions included. For free!"
 date: "2021-04-25"
+isFeatured: true
 ---
 
 # Deployment

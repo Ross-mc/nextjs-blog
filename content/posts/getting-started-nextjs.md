@@ -4,6 +4,7 @@ date: "2021-04-22"
 image: "getting-started-nextjs.png"
 excerpt: "NextJS is the React Framework for production. It makes building fullstack React apps and sites a breeze. They will ship with serverside rendering"
 slug: "getting-started-nextjs"
+isFeatured: true
 ---
 
 # Next JS
