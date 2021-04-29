@@ -17,7 +17,8 @@ export const getStaticProps = () => {
   return {
     props: {
       featuredPosts
-    }
+    },
+    revalidate: 1000
   }
 }
 
