@@ -8,15 +8,17 @@ const PostItem = (props) => {
   const humanReadableDate = new Date(post.date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
+    year: "numeric"
   })
 
-  const imagePath = `/images/posts/${post.slug}/${post.image}`
+  const imagePath = `/images/posts/${post.image}`;
+  const linkPath = `/posts/${post.slug}`
   return (
     <li className={classes.post}>
-      <Link href={post.slug}>
+      <Link href={linkPath}>
         <a>
           <div className={classes.image}>
-            <Image src={imagePath} alt={post.title} width={300} height={200}/>
+            <Image src={imagePath} alt={post.title} width={300} height={200} layout="responsive"/>
           </div>
           <div className={classes.content}>
             <h3>{post.title}</h3>
