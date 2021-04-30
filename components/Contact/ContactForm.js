@@ -1,10 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import classes from "./contactform.module.css";
 
 const ContactForm = () => {
   const emailInput = useRef("");
   const nameInput = useRef("");
   const messageInput = useRef("");
+  const [outputMessage, setOutputMessage] = useState(null);
+  const [sending, setSending] = useState(null);
+
+  const clearForm = () => {
+    emailInput.current.value = "";
+    nameInput.current.value = "";
+    messageInput.current.value = "";
+  }
 
   const sendMessageHandler = (e) => {
     e.preventDefault();
@@ -23,6 +31,7 @@ const ContactForm = () => {
     ) {
       return;
     }
+    setSending(true)
 
     fetch("/api/contact", {
       method: "POST",
@@ -34,8 +43,38 @@ const ContactForm = () => {
         name,
         message
       })
-    }).then(res => res.json())
+    }).then(res => {
+      setSending(false)
+      if (res.status === 201){
+        setOutputMessage({
+          type: "success",
+          message: "Your comment was saved!"
+        })
+      } else {
+        setOutputMessage({
+          type: "fail",
+          message: "Error sending comment. Please try again later"
+        })
+      }
+      clearForm()
+      setTimeout(() => {
+        setOutputMessage(null);
+      }, 2000)
+    }).catch(err => {
+      setSending(false);
+      setOutputMessage({
+        type: "fail",
+        message: "Error sending comment. Please try again later"
+      })
+      setTimeout(() => {
+        setOutputMessage(null);
+      }, 2000)
+      clearForm()
+    })
+    
   }
+
+
 
   return (
     <section className={classes.contact}>
@@ -59,6 +98,8 @@ const ContactForm = () => {
           <button>Send Message</button>
         </div>
       </form>
+      {sending && <p>Sending...</p>}
+      {outputMessage && <p style={{color: outputMessage.type === "success" ? "green" : "red"}}>{outputMessage.message}</p>}
     </section>
   )
 }

@@ -45,8 +45,6 @@ export default async (req, res) => {
       connection.close()
       return
     }
-    
-    
 
   }
 };
